@@ -1,6 +1,42 @@
 # guppy_parameter_optimiser
 A small bash script that automates sweeping Guppy parameters in an attempt to optimise basecalling rate
 
+## Installation
+
+Just download the script from this repository and run (or clone the repository).
+
+This script depends on several other pieces of software being install prior to it's use:
+
+* nvidia-smi (installed alongside Nvidia drivers)
+* CUDA
+* Guppy (I was using 6.0.1, but it will work with any recent Guppy version)
+* gpustat (https://github.com/wookayin/gpustat)
+
+## Example / "benchmarking" data set
+
+I have provided a small set of example data that I have been using in testing, development and benchmarking. It is hosted via MEGA.co.nz, and can be downloaded manually or via the command line.
+
+Link to the small subset of fast5 data for manual download: ([link](https://mega.nz/file/nAkFHAZR#hFc2ELBxNlXV8MfGaAuuP8nXfoEHBwvk1obnO-LkZTI))
+
+### Install megatools
+
+`megatools` is a cli program that allows terminal-based access to MEGA.co.nz hosted files/data. It's straightforward to install on Debain/Ubuntu systems:
+
+```shell=
+sudo apt update
+sudo apt install megatools
+```
+
+### Download the example data
+
+We can now use `megatools` to download the example fast5 data:
+
+```shell=
+megadl https://mega.nz/file/nAkFHAZR#hFc2ELBxNlXV8MfGaAuuP8nXfoEHBwvk1obnO-LkZTI
+```
+
+Once downloaded extract the data and you're ready to go.
+
 ## Basic usage
 
 ```sh
