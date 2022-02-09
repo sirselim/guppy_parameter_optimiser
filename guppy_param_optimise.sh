@@ -2,7 +2,7 @@
 ## guppy_param_optimise - a small tool to aid in Guppy parameter selection
 ## Author: Miles Benton
 ## Created: 2022/02/09 15:12:34 
-## Last modified: 2022/02/09 17:04:21
+## Last modified: 2022/02/09 17:58:35
 
 helpFunction()
 {
