@@ -9,7 +9,7 @@ helpFunction()
    echo ""
    echo "Usage: $0 -a model -b chunks_per_runner -c data_dir -d output_dir"
    echo -e "\t-a Basecalling model to test, one of: fast, hac, sup"
-   echo -e "\t-b A list of chunks_per_runner values, example: \"256 512 786 1024\""
+   echo -e "\t-b A list of chunks_per_runner values to test, example: \"256 512 786 1024\""
    echo -e "\t-c Directory containing a sub set of fast5 files"
    echo -e "\t-d Directory for results to be written to"
    exit 1 # Exit script after printing help
