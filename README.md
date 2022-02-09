@@ -62,6 +62,8 @@ Usage: ./testing2.sh -a model -b chunks_per_runner -c data_dir -d output_dir
 
 Pull info from Guppy logs:
 
+### FAST model
+
 ```sh
 grep -o 'chunks per runner: .*\|samples/s:.*' param_sweep_test/guppy_fast_*
 
@@ -90,3 +92,23 @@ done
 2299.375
 2762.375
 ```
+
+### HAC model
+
+```sh
+$ grep -o 'chunks per runner: .*\|samples/s:.*' param_sweep_hac/guppy_hac_*
+
+param_sweep_hac/guppy_hac_256.out:chunks per runner:  256
+param_sweep_hac/guppy_hac_256.out:samples/s: 4.49655e+06
+param_sweep_hac/guppy_hac_512.out:chunks per runner:  512
+param_sweep_hac/guppy_hac_512.out:samples/s: 9.11726e+06
+param_sweep_hac/guppy_hac_768.out:chunks per runner:  768
+param_sweep_hac/guppy_hac_768.out:samples/s: 1.1925e+07
+param_sweep_hac/guppy_hac_1024.out:chunks per runner:  1024
+param_sweep_hac/guppy_hac_1024.out:samples/s: 1.38832e+07
+param_sweep_hac/guppy_hac_1246.out:chunks per runner:  1246
+param_sweep_hac/guppy_hac_1246.out:samples/s: 1.37355e+07
+param_sweep_hac/guppy_hac_1500.out:chunks per runner:  1500
+param_sweep_hac/guppy_hac_1500.out:samples/s: 1.28892e+07
+```
+
