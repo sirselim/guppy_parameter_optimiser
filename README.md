@@ -3,7 +3,7 @@ A small bash script that automates sweeping Guppy parameters in an attempt to op
 
 ## What is this?
 
-Nvidia GPUs greatly accelerate the basecalling rate of Nanopore data. This is great, but not all GPUs are built equally, meaning that sometimes you'll need to tweak specific parameters to either increase performance, or on the other side of the coin, tune down parameters so that a lower spec'd card can work. 
+Nvidia GPUs greatly accelerate the basecalling rate of Nanopore data. This is great, but not all GPUs are built equally, meaning that sometimes you'll need to tweak specific parameters to either increase performance, or on the other side of the coin, tune down parameters so that a lower spec'd card can work.
 
 As this optimistation process can get time consuming I decided to put together a rough and ready bash script that would allow me to iterate through a given list/string of chunks_per_runner values while also outputting the basecalling metrics as well as GPU usage. I have gotten it into a shape that I’m happy to release a minimal working version on GitHub, it can be found here (link).
 
