@@ -45,7 +45,7 @@ MinION = 4000 kHz x 512 channels x 1.0 = 2,048,000 samples/s $\equiv$ 2.048 M sa
 
 It should be noted that this is based of an ideal situation where a flowcell is sequencing at 100% it's capacity / theoretical output. This is in reality never going to happen, so it's probably safe to assume that a GPU that can perform a minimum of 1.6 M samples/s for a given basecalling model will be able to keep up 'live'.
 
-![image](https://user-images.githubusercontent.com/5932864/155635926-f7323d62-af72-45ed-8b07-6508979d03d2.png)
+![image](https://user-images.githubusercontent.com/5932864/155636629-da28c09e-8253-46c0-8cf1-636aa2df1db5.png)
 
 \* the metric reported is samples/second - where higher is faster basecalling
 **DNF** - did not finish (I couldn’t be bothered waiting hours/days for the CPU)
