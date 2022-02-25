@@ -125,3 +125,18 @@ param_sweep_hac/guppy_hac_1500.out:chunks per runner:  1500
 param_sweep_hac/guppy_hac_1500.out:samples/s: 1.28892e+07
 ```
 
+## To do
+
+* output information (in json?)
+  * include:
+    * GPU type
+    * submitter
+    * Nvidia driver version
+    * CUDA version
+    * Guppy version
+    * model type
+    * guppy parameters
+    * basecalling rate
+    * GPU memory usage
+* script to upload the above info should user want to
+* server (with db) to house and display this info
