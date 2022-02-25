@@ -11,7 +11,7 @@ At the moment the basic approach is that a user provides the model to optimise (
 
 ## How do the tested GPUs compare?
 
-See [here](gpu_basecalling_benchmarks.md) for an extended table of basecalling rates for a range of GPUs. Benchmarks are being contributed by the wider community so make sure to check back often for updates.
+See [here](gpu_basecalling_benchmarking.md) for an extended table of basecalling rates for a range of GPUs. Benchmarks are being contributed by the wider community so make sure to check back often for updates.
 
 ## Installation
 
