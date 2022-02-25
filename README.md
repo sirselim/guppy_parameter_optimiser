@@ -9,6 +9,10 @@ As this optimistation process can get time consuming I decided to put together a
 
 At the moment the basic approach is that a user provides the model to optimise (fast, hac, sup) and then a string of chunks_per_runner values (i.e. “160 256 512 786 1024”), as well as a directory of fast5 files and an output location. The script then sequentially runs Guppy using the selected model and processes through the string of values. For each iteration it logs the Guppy information as well GPU usage information.
 
+## How do the tested GPUs compare?
+
+See [here](gpu_basecalling_benchmarks.md) for an extended table of basecalling rates for a range of GPUs. Benchmarks are being contributed by the wider community so make sure to check back often for updates.
+
 ## Installation
 
 Just download the script from this repository and run (or clone the repository).
