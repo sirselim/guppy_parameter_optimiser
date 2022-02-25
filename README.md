@@ -20,9 +20,10 @@ Just download the script from this repository and run (or clone the repository).
 This script depends on several other pieces of software being install prior to it's use:
 
 * nvidia-smi (installed alongside Nvidia drivers)
-* CUDA
+* CUDA (tested with version 11.2)
 * Guppy (I was using 6.0.1, but it will work with any recent Guppy version)
-* gpustat (https://github.com/wookayin/gpustat)
+
+Note: I have removed a prior dependency (gpustat) in light of an awesome comment from Hasindu Gamaarachchi (@hasindu2008). He replicated the same functionality using `nvidia-smi dmon`, so that saves pulling in a lot of extra python packages. Thanks Hasindu!
 
 ## Example / "benchmarking" data set
 

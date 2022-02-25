@@ -45,7 +45,9 @@ mkdir -p "${output_dir}"
 for CHUNKS_PER_RUNNER in $chunks_per_runner; do
 
   # poll gpu ram usage
-  gpustat -i 5 > "${output_dir}"/gpu_usage_"${model}"_"${CHUNKS_PER_RUNNER}"_out.txt &
+  #gpustat -i 5 > "${output_dir}"/gpu_usage_"${model}"_"${CHUNKS_PER_RUNNER}"_out.txt &
+  nvidia-smi  dmon -i 0 -d 5 -f "${output_dir}"/gpu_usage_"${model}"_"${CHUNKS_PER_RUNNER}"_out.txt &
+  nvidiasmidmonpid=$!
 
   # run guppy with user provided parameters
   guppy_basecaller -c dna_r9.4.1_450bps_"${model}".cfg \
@@ -53,9 +55,13 @@ for CHUNKS_PER_RUNNER in $chunks_per_runner; do
     -s "${output_dir}" \
     -x 'auto' \
     --chunks_per_runner "${CHUNKS_PER_RUNNER}" > "${output_dir}"/guppy_"${model}"_"${CHUNKS_PER_RUNNER}".out
+  
+  # report back average GPU mem used
+  #mem_total_mb=$(nvidia-smi --query-gpu=memory.total --format=csv -i 0 | tail -1 | awk '{print $1}')
+  #AVG=$(tail -n +3 "${output_dir}"/gpu_usage_"${model}"_"${CHUNKS_PER_RUNNER}"_out.txt | awk 'BEGIN{sum=0}{sum=sum+$6}END{print sum/NR}')
+  #echo  "${mem_total_mb} * ${AVG}/100.0"  | bc -l
 
-  # kill gpustat
-  # TODO - need a nicer way of closing gpustat
-  killall gpustat
+  # kill nvidia-smi dmon
+  kill $nvidiasmidmonpid
   #/END
 done
