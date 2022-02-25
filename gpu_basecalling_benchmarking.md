@@ -2,7 +2,7 @@
 
 ## Table of results (updated: 2022-02-25)
 
-| GPU\CPU                  | FAST model^+^ | HAC model^+^ | SUP model^+^ |
+| GPU\CPU                  | FAST model | HAC model | SUP model |
 |--------------------------|---------------|--------------|--------------|
 | A100                  | 3.40604e+07   | 2.68319e+07  | 6.58227e+06  |
 | RTX3090 (HG) | 6.09667ee+07 | 1.90738e+07 | 6.24702e+06 |
@@ -19,7 +19,7 @@
 | Jetson Xavier NX         | 4.36631e+06   | -  | -  |
 | Xeon W-10885M (CPU)      | 6.43747e+05   | DNF          | DNF          |
 
-**NOTE:** the above table is currently sorted based on best performance in the Super Accuracy Model (SUP). 
+**NOTE:** the above table is currently sorted based on best performance in the Super Accuracy Model (SUP). All results are reported in samples/s and represent Guppy parameters that have been "tuned" (so these aren't the default Guppy parameters).
 
 A massive thank you to all external contributors:
 
