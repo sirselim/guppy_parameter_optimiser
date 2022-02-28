@@ -129,5 +129,6 @@ awk 'FNR==1 && NR!=1 { while (/^gpu/) getline; }1 {print}' "$output_dir"/guppy_p
 echo -e "cleaning up intermediate files"
 rm "$output_dir"/guppy_"$model"_*
 rm "$output_dir"/gpu_usage_*
+rm "$output_dir"/guppy_paramopt_*
 echo -e "...done..."
 
