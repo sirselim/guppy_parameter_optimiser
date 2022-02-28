@@ -74,10 +74,10 @@ for chunksperrunner in $chunks_per_runner; do
     # create output file or delete contents if it exists
     if [ -f "$csvout" ]; then
         echo "csv file found... deleting its contents!"
-        cat /dev/null > "$csvout"
+        cat /dev/null > "$output_dir"/"$csvout"
     else
         echo "output csv file created"
-        > "$csvout"
+        > "$output_dir"/"$csvout"
     fi
     
     # add header to csv file (i.e. write one line)
@@ -122,8 +122,12 @@ for chunksperrunner in $chunks_per_runner; do
     #/END
 done
 
+# cat output from iterations to single csv
+awk 'FNR==1 && NR!=1 { while (/^gpu/) getline; }1 {print}' "$output_dir"/guppy_paramopt_* > "$output_dir"/guppy_paramopt_"$model".csv
+
 # clean up
 echo -e "cleaning up intermediate files"
-rm guppy_"$model"_*
-rm gpu_usage_*
+rm "$output_dir"/guppy_"$model"_*
+rm "$output_dir"/gpu_usage_*
 echo -e "...done..."
+
