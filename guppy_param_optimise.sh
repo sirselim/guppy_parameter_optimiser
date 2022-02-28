@@ -121,3 +121,9 @@ for chunksperrunner in $chunks_per_runner; do
     
     #/END
 done
+
+# clean up
+echo -e "cleaning up intermediate files"
+rm guppy_"$model"_*
+rm gpu_usage_*
+echo -e "...done..."
