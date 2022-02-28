@@ -57,14 +57,7 @@ for chunksperrunner in $chunks_per_runner; do
     
     # kill nvidia-smi dmon
     kill $nvidiasmidmonpid
-
-    # report back average GPU mem used
-    mem_total_mb=$(nvidia-smi --query-gpu=memory.total --format=csv -i 0 | tail -1 | awk '{print $1}')
-    avgmem=$(sed -n 'n;p' "${output_dir}"/gpu_usage_"${model}"_"${chunksperrunner}"_out.txt | awk 'BEGIN{sum=0}{sum=sum+$6}END{print sum/NR}')
-    gpumemused=$(echo "($avgmem * 1000)" | bc -l)
-    mem_used_percent=$(echo "scale=2; ( $gpumemused / $mem_total_mb ) * 100" | bc -l)
-    echo "this iteration used ${mem_used_percent}% GPU RAM"
-    
+   
     # create variables to output
     gpu=$(nvidia-smi -q | grep 'Product Name' | sed -e 's/.*: //g')
     gpumem=$(nvidia-smi --query-gpu=memory.total --format=csv -i 0 | tail -1 | awk '{print $1}')
@@ -103,6 +96,13 @@ for chunksperrunner in $chunks_per_runner; do
     --delimiters ',')
     echo "$header" >> "$output_dir"/"$csvout"
     
+    # report back average GPU mem used
+    memtotalmb=$(nvidia-smi --query-gpu=memory.total --format=csv -i 0 | tail -1 | awk '{print $1}')
+    avgmem=$(sed -n 'n;p' "${output_dir}"/gpu_usage_"${model}"_"${chunksperrunner}"_out.txt | awk 'BEGIN{sum=0}{sum=sum+$6}END{print sum/NR}')
+    gpumemused=$(echo "($avgmem * 1000)" | bc -l)
+    memusedpercent=$(echo "scale=2; ( $gpumemused / $memtotalmb ) * 100" | bc -l)
+    echo "this iteration used ${memusedpercent}% GPU RAM"
+
     # output to file
     dataset=$(paste <(echo "$gpu") \
         <(echo "$gpumem") \
