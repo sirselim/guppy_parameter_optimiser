@@ -2,7 +2,7 @@
 ## guppy_param_optimise - a small tool to aid in Guppy parameter selection
 ## Author: Miles Benton
 ## Created: 2022/02/09 15:12:34
-## Last modified: 2022/02/09 17:58:35
+## Last modified: 2022/03/02 21:31:02
 
 helpFunction()
 {
@@ -97,16 +97,15 @@ for chunksperrunner in $chunks_per_runner; do
     echo "$header" >> "$output_dir"/"$csvout"
     
     # report back average GPU mem used
-    memtotalmb=$(nvidia-smi --query-gpu=memory.total --format=csv -i 0 | tail -1 | awk '{print $1}')
     avgmem=$(sed -n 'n;p' "${output_dir}"/gpu_usage_"${model}"_"${chunksperrunner}"_out.txt | awk 'BEGIN{sum=0}{sum=sum+$6}END{print sum/NR}')
-    gpumemused=$(echo "($avgmem * 1000)" | bc -l)
-    memusedpercent=$(echo "scale=2; ( $gpumemused / $memtotalmb ) * 100" | bc -l)
-    echo "this iteration used ${memusedpercent}% GPU RAM"
+    memusedpercent=$(echo "($avgmem / 100)" | bc -l)
+    memused=$(echo "scale=2; ( $memusedpercent * $gpumem ) " | bc -l)
+    echo "this iteration used ${avgmem}% GPU RAM"
 
     # output to file
     dataset=$(paste <(echo "$gpu") \
         <(echo "$gpumem") \
-        <(echo "$gpumemused") \
+        <(echo "$memused") \
         <(echo "$gpudriver") \
         <(echo "$cudaversion") \
         <(echo "$guppyversion") \
@@ -129,6 +128,7 @@ awk 'FNR==1 && NR!=1 { while (/^gpu/) getline; }1 {print}' "$output_dir"/guppy_p
 echo -e "cleaning up intermediate files"
 rm "$output_dir"/guppy_"$model"_*
 rm "$output_dir"/gpu_usage_*
-rm "$output_dir"/guppy_paramopt_*
+#rm "$output_dir"/guppy_paramopt_"$model"_*
+rm "$output_dir"/guppy_basecaller_log*
 echo -e "...done..."
 
