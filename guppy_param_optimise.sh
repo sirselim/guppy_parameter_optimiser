@@ -4,6 +4,9 @@
 ## Created: 2022/02/09 15:12:34
 ## Last modified: 2022/03/02 21:31:02
 
+GBCMD="singularity exec /home/zed/.singularity/nanopore-guppy-gpu.sif guppy_basecaller"
+#GBCMD="guppy_basecaller"
+
 helpFunction()
 {
     echo ""
@@ -49,7 +52,7 @@ for chunksperrunner in $chunks_per_runner; do
     nvidiasmidmonpid=$!
     
     # run guppy with user provided parameters
-    guppy_basecaller -c dna_r9.4.1_450bps_"${model}".cfg \
+    ${GBCMD} -c dna_r9.4.1_450bps_"${model}".cfg \
     -i "${data_dir}" \
     -s "${output_dir}" \
     -x 'auto' \
@@ -63,7 +66,7 @@ for chunksperrunner in $chunks_per_runner; do
     gpumem=$(nvidia-smi --query-gpu=memory.total --format=csv -i 0 | tail -1 | awk '{print $1}')
     gpudriver=$(nvidia-smi -q | grep 'Driver Version' | sed -e 's/.*: //g')
     cudaversion=$(nvidia-smi -q | grep 'CUDA Version' | sed -e 's/.*: //g')
-    guppyversion=$(guppy_basecaller --version | grep -oP 'Version [0-9.a-zA-Z+]{0,20}' | sed -e 's/Version //g')
+    guppyversion=$(${GBCMD} --version | grep -oP 'Version [0-9.a-zA-Z+]{0,20}' | sed -e 's/Version //g')
     chunksize=$(grep 'chunk size:' "${output_dir}"/guppy_"${model}"_"${chunksperrunner}".out | sed -e 's/.*://g' -e 's/ //g')
     numbasecallers=$(grep 'num basecallers:' "${output_dir}"/guppy_"${model}"_"${chunksperrunner}".out | sed -e 's/.*://g' -e 's/ //g')
     runnersperdevice=$(grep 'runners per device:' "${output_dir}"/guppy_"${model}"_"${chunksperrunner}".out | sed -e 's/.*://g' -e 's/ //g')
