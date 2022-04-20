@@ -4,8 +4,8 @@
 ## Created: 2022/02/09 15:12:34
 ## Last modified: 2022/03/02 21:31:02
 
-GBCMD="singularity exec /home/zed/.singularity/nanopore-guppy-gpu.sif guppy_basecaller"
-#GBCMD="guppy_basecaller"
+#GBCMD="singularity exec /home/zed/.singularity/nanopore-guppy-gpu-6.0.1.sif guppy_basecaller"
+GBCMD="guppy_basecaller"
 
 helpFunction()
 {
